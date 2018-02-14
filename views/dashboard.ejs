@@ -1,0 +1,78 @@
+<html ng-app="listapp">
+    <head>
+        <title>Search</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+        <script src="/js/emplist.js"></script>
+                <!-- Latest compiled and minified CSS -->
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+                <!-- jQuery library -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+                <!-- Latest compiled JavaScript -->
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+                <link rel="stylesheet" href="css/style.css">
+                <link rel="stylesheet" href="css/header.css">
+                <link rel="stylesheet" href="css/search.css">
+    </head>
+    <body ng-controller="listcontroller">
+      <div class="container-fluid">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#"><strong>Employee Search</strong></a>
+              </div>
+              <ul class="nav navbar-nav">
+                <!--<li class="active"><a href="#">Home</a></li>-->
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+              </ul>
+            </div>
+          </nav> 
+          <!--search box-->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <div id="imaginary_container"> 
+                  <div class="input-group stylish-input-group">
+                    <input type="text" class="form-control"  placeholder="Search employees" ng-model="search" >
+                      <span class="input-group-addon">
+                        <button type="submit">
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>  
+                      </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center; margin-top:30px">
+              <button type="button" class="btn btn-primary" ng-click="order='score'">Order by ascending score</button>
+              <button type="button" class="btn btn-primary" ng-click="order='-score'">Order by descending score</button>
+          </div>
+          
+          <div class="container">
+              <h2>Employee Details</h2>            
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="emp in employees | orderBy:order | filter:search">
+                    <td>{{emp.fname}}</td>
+                    <td>{{emp.lname}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>{{emp.score}}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+     </div>
+    </body>

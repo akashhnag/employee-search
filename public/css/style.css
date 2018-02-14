@@ -1,0 +1,41 @@
+.navbar{
+    border-radius: 0;
+    margin-bottom: 0;
+    padding:1% 0;
+    font-size: 1.2em;
+    border: 0;
+    background-color: #5E4485;
+    color: white;
+    border: 0;
+}
+.navbar-brand{
+    float: left;
+}
+.navbar-inverse .navbar-nav .active a, .navbar-inverse .navbar-nav .active a:focus,
+.navbar-inverse .navbar-nav .active a:hover{
+    color:white;
+    background-color: #5E4485;
+}
+
+/*modal css*/
+
+.modal-dialog {
+    width: 300px;
+}
+.modal-footer {
+    height: 70px;
+    margin: 0;
+}
+.modal-footer .btn {
+    font-weight: bold;
+}
+.modal-footer .progress {
+    display: none;
+    height: 32px;
+    margin: 0;
+}
+.input-group-addon {
+    color: #fff;
+    background: #3276B1;
+}
+
