@@ -40,7 +40,7 @@ app.use(bodyParser.json());
 app.use("/",express.static("public"));
 
 //calling functions
-routes(app,urlencodedParser,users);
+routes(app,urlencodedParser,users,session);
 
 //port setup
 app.listen(3000,function(){

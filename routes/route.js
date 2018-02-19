@@ -1,10 +1,21 @@
-module.exports=function(app,urlencodedParser,users){
+module.exports=function(app,urlencodedParser,users,session){
     console.log("routes included");
+    var sess;
     app.get("/",function(req,res){
-        res.render("index");
+        sess=req.session;
+        if(sess.email)
+        {
+            
+        }
+        else{
+            res.render("index");
+        }
+        
     })
 
     app.post("/login",urlencodedParser,function(req,res){
+        sess=req.session;
+        sess.email=req.body.email;
         users.find({email:req.body.email,pass:req.body.pass},function(err,data){
             if(err){throw err} 
             if(!data.length)
@@ -18,7 +29,14 @@ module.exports=function(app,urlencodedParser,users){
     })
 
     app.get("/dashboard",function(req,res){
-        res.render("dashboard");
+        sess=req.session;
+        if(sess.email){
+            res.render("dashboard");
+        }
+        else{
+            res.render("index");
+        }
+       
     })
 
     app.get("/dashboard/items",function(req,res){
@@ -47,5 +65,16 @@ module.exports=function(app,urlencodedParser,users){
     app.get("/regSuccess",function(req,res){
         res.render("regSuccess");
     })
+
+    app.get('/logout',function(req,res){
+        req.session.destroy(function(err) {
+          if(err) {
+            console.log(err);
+          } else {
+            res.redirect('/');
+          }
+        });
+        
+        });
    
 }
